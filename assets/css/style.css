@@ -94,6 +94,17 @@ body {
     background-attachment: fixed;
 }
 
+.contact-btn {
+    background-color: #1ab2b0;
+    padding: 8px 15px;
+    border-radius: 20px;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.contact-btn:hover {
+    background-color: #088ac3;
+    transform: scale(1.05);
+}
 
 /* 
 .navbar {
