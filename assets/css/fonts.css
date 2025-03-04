@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+/* 
+AYAW GUMANA 
+*/
+/* @font-face {
+    font-family: 'CGR';
+    src: url('/assets/fonts/cgr.ttf') format('truetype');
+} */
+
+body {
+    font-family: 'Inter', sans-serif !important;
+}
+
+/* 
+AYAW GUMANA 
+*/
+/* .navbar .navbar-brand {
+    font-family: 'CGR', 'Inter', sans-serif !important;
+} */
