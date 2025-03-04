@@ -1,0 +1,118 @@
+#games {
+    background-color: transparent;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin: 0;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+#games h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+#games h2:hover {
+    transform: scale(1.05);
+    color: #088ac3;
+}
+
+.games-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.games-container::-webkit-scrollbar-thumb {
+    background: #088ac3;
+    border-radius: 10px;
+}
+
+.games-container::-webkit-scrollbar-track {
+    background: #e0e0e0;
+}
+
+#games .card:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(8, 138, 195, 0.7);
+}
+
+.games-container {
+    display: flex;
+    justify-content: flex-start !important; /* Ensure it starts from the beginning */
+    align-items: center;
+    gap: 30px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 30px;
+    white-space: nowrap;
+    width: 85vw;
+    max-width: 1400px;
+    margin: 0 auto;
+    scroll-padding-left: 0 !important; /* Ensures it doesn't skip the first card */
+}
+
+.game-card {
+    flex: 0 0 auto;
+    width: 900px !important;
+    height: 500px !important;
+    scroll-snap-align: start !important; /* Ensures it snaps properly to the start */
+}
+
+
+#games .card {
+    background-color: #1ab2b0 !important;
+    color: white !important; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 50px !important;
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+
+#games .card-title {
+    font-size: 4rem !important;
+    word-wrap: break-word !important; /* Ensures long words wrap */
+    text-align: center !important;
+    max-width: 100% !important;
+    font-weight: 900 !important; /* Thickens the text */
+}
+
+
+#games .card-text {
+    font-size: 0.9rem !important;
+    color: black !important;
+    text-align: center !important;
+    word-wrap: break-word !important; /* Prevents overflow */
+    max-width: 90% !important;
+    overflow-wrap: break-word !important;
+}
+
+#games .card-body {
+    flex-grow: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    height: 100% !important;
+    overflow: hidden !important;
+}
+
+.card-img-top {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    max-height: 300px !important;
+    border-radius: 10px 10px 0 0 !important;
+}

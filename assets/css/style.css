@@ -84,7 +84,6 @@ body {
     background-color: transparent !important;
 }
 
-
 body {
     background: radial-gradient(circle at 20% 30%, #12858c 20%, #1ab2b0 50%),
                 radial-gradient(circle at 80% 20%, #088ac3 25%, #0661a2 55%),
@@ -94,87 +93,6 @@ body {
     background-size: cover;
     background-attachment: fixed;
 }
-
-.stats-card {
-    background-color: #088ac3 !important;
-    color: white !important;
-    border: none;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.stats-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(8, 138, 195, 0.6);
-}
-
-/* Social Media Cards */
-.social-media-cards .twitter-card {
-    background-color: #1a8acf;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-}
-
-.social-media-cards .youtube-card {
-    background-color: #6b0000;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-}
-
-.social-media-cards .discord-card {
-    background-color: #5865F2;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-}
-
-.social-media-cards .roblox-card {
-    background-color: #bbbbbb;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-}
-
-/* Hover effects */
-.social-media-cards .twitter-card:hover {
-    background-color: #1b7bb3;
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(26, 138, 207, 0.6);
-}
-
-.social-media-cards .youtube-card:hover {
-    background-color: #8b0000;
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(107, 0, 0, 0.6);
-}
-
-.social-media-cards .discord-card:hover {
-    background-color: #4b59d9;
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(88, 101, 242, 0.6);
-}
-
-.social-media-cards .roblox-card:hover {
-    background-color: #a5a5a5;
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(187, 187, 187, 0.6);
-}
-
-/* Text color fix */
-.card p {
-    color: rgba(255, 255, 255, 0.9) !important;
-}
-
-/* Add spacing and padding to cards on smaller screens */
-@media (max-width: 768px) {
-    .social-media-cards .card {
-        margin-bottom: 20px !important; /* Extra spacing between cards */
-        width: 90% !important; /* Decrease the card size to 90% of the container */
-        padding: 10px !important; /* Add padding to the cards */
-    }
-}
-
-@media (max-width: 480px) {
-    .social-media-cards .card {
-        margin-bottom: 25px !important; /* Increased spacing for very small screens */
-        width: 85% !important; /* Decrease the card size even further */
-        padding: 15px !important; /* Add more padding for smaller screens */
-    }
-}
-
 
 
 /* 
