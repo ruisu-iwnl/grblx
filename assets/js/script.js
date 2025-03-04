@@ -18,3 +18,38 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    function observeSections() {
+        const sections = document.querySelectorAll("#hero-placeholder, #about-placeholder, #games-placeholder, #team-placeholder");
+
+        if (sections.length === 0) {
+            setTimeout(observeSections, 500);
+            return;
+        }
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const sectionId = entry.target.getAttribute("id");
+
+                        navLinks.forEach((link) => {
+                            link.classList.remove("active");
+                            if (link.getAttribute("href") === `#${sectionId}`) {
+                                link.classList.add("active");
+                            }
+                        });
+                    }
+                });
+            },
+            { threshold: 0.5 }
+        );
+
+        sections.forEach((section) => observer.observe(section));
+    }
+
+    setTimeout(observeSections, 500);
+});
