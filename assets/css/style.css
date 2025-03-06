@@ -8,6 +8,44 @@ body {
     margin-top: 0px !important; 
 }
 
+#video-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+
+#video-overlay::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); 
+}
+
+#bg-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+#bg-video::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 1.5); 
+    z-index: 0;
+}
+
+
 @media (max-width: 768px) {
     body {
         margin-top: 100px !important; 
@@ -68,9 +106,10 @@ body {
 }
 
 .navbar {
-    backdrop-filter: blur(10px);
-    background-color: rgba(8, 138, 195, 0.5); 
+    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0); 
 }
+
 
 .navbar-nav .nav-link.active,
 .navbar-nav .nav-link:focus,

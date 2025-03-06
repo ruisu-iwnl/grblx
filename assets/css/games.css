@@ -13,6 +13,7 @@
 }
 
 #games h2 {
+    color: white;
     font-size: 2.5rem;
     font-weight: bold;
     transition: transform 0.3s ease, color 0.3s ease;
@@ -43,7 +44,7 @@
 
 .games-container {
     display: flex;
-    justify-content: flex-start !important; /* Ensure it starts from the beginning */
+    justify-content: flex-start !important; 
     align-items: center;
     gap: 30px;
     overflow-x: auto;
@@ -53,19 +54,19 @@
     width: 85vw;
     max-width: 1400px;
     margin: 0 auto;
-    scroll-padding-left: 0 !important; /* Ensures it doesn't skip the first card */
+    scroll-padding-left: 0 !important; 
 }
 
 .game-card {
     flex: 0 0 auto;
     width: 900px !important;
     height: 500px !important;
-    scroll-snap-align: start !important; /* Ensures it snaps properly to the start */
+    scroll-snap-align: start !important; 
 }
 
 
 #games .card {
-    background-color: #1ab2b0 !important;
+    background-color: rgba(0, 0, 0, 0) !important; 
     color: white !important; 
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     padding: 50px !important;
@@ -77,23 +78,23 @@
     align-items: center !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
+    border-radius: 10px; 
+    backdrop-filter: blur(5px); 
 }
-
 
 #games .card-title {
     font-size: 4rem !important;
-    word-wrap: break-word !important; /* Ensures long words wrap */
+    word-wrap: break-word !important; 
     text-align: center !important;
     max-width: 100% !important;
-    font-weight: 900 !important; /* Thickens the text */
+    font-weight: 900 !important;
 }
-
 
 #games .card-text {
     font-size: 0.9rem !important;
-    color: black !important;
+    color: white !important;
     text-align: center !important;
-    word-wrap: break-word !important; /* Prevents overflow */
+    word-wrap: break-word !important; 
     max-width: 90% !important;
     overflow-wrap: break-word !important;
 }
