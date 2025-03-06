@@ -6,10 +6,12 @@ html {
     font-size: 100%;
 }
 
-
 @media (max-width: 1200px) {
     html {
         font-size: 90%;
+    }
+    img[alt="G-RBLX Logo"] {
+        height: 350px;
     }
 }
 
@@ -17,17 +19,26 @@ html {
     html {
         font-size: 80%;
     }
+    img[alt="G-RBLX Logo"] {
+        height: 300px;
+    }
 }
 
 @media (max-width: 768px) {
     html {
         font-size: 70%;
     }
+    img[alt="G-RBLX Logo"] {
+        height: 250px;
+    }
 }
 
 @media (max-width: 576px) {
     html {
         font-size: 60%;
+    }
+    img[alt="G-RBLX Logo"] {
+        height: 200px;
     }
 }
 
