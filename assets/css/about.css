@@ -1,63 +1,222 @@
+/* Base Styles */
 #about {
-    background-color: #21435b !important;
-    color: white;
     min-height: 100vh;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 80px 20px;
-    margin: 0;
-    box-sizing: border-box;
-    transition: background-color 0.3s ease-in-out;
     position: relative;
     overflow: hidden;
+    background-color: #21435b;
+    color: white;
+    transition: background-color 0.3s ease-in-out;
 }
 
 #about:hover {
-    background-color: #054883 !important;
+    background-color: #054883;
 }
 
-/* Ensure it smoothly returns to #054883 when hovered out */
-#about:not(:hover) {
-    background-color: #21435b !important;
-    transition: background-color 0.3s ease-in-out;
+/* Dynamic Grid Background */
+.grid-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    transform: perspective(500px) rotateX(60deg);
+    transform-origin: top;
+    animation: gridMove 20s linear infinite;
 }
 
-#about h2 {
-    font-size: 3rem; 
-    transition: transform 0.3s ease, color 0.3s ease; 
+@keyframes gridMove {
+    0% {
+        transform: perspective(500px) rotateX(60deg) translateY(0);
+    }
+    100% {
+        transform: perspective(500px) rotateX(60deg) translateY(50px);
+    }
 }
 
-#about h2:hover {
-    transform: scale(1.1);
-    color: #1ab2b0; 
+/* About Content */
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
 }
 
-#about p {
-    font-size: 1.5rem;
-    transition: transform 0.3s ease, color 0.3s ease; 
+/* Header Styles */
+.about-header {
+    margin-bottom: 3rem;
 }
 
-#about p:hover {
-    transform: scale(1.05); 
-    color: #1ab2b0; 
-}
-
-.owner-quote {
-    font-size: 1.3rem;
-    font-style: italic;
-    color: #1ab2b0;
-    margin-top: 20px;
+.section-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+    color: white;
     transition: transform 0.3s ease, color 0.3s ease;
 }
 
-.owner-quote p {
-    margin-bottom: 10px;
+.section-title:hover {
+    transform: scale(1.1);
+    color: #1ab2b0;
+}
+
+.title-underline {
+    width: 60px;
+    height: 2px;
+    background: rgba(26, 178, 176, 0.3);
+    margin: 1rem auto;
+    position: relative;
+}
+
+.title-underline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 100%;
+    background: #1ab2b0;
+    animation: slideRight 2s ease-in-out infinite;
+}
+
+@keyframes slideRight {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(30px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* Main Text */
+.about-text {
+    margin-bottom: 4rem;
+}
+
+.main-text {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    color: white;
+    margin-bottom: 2rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.main-text:hover {
+    transform: scale(1.05);
+    color: #1ab2b0;
+}
+
+/* Quote Styles */
+.owner-quote {
+    background: rgba(26, 178, 176, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.owner-quote::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 0%, rgba(26, 178, 176, 0.2) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.owner-quote:hover {
+    transform: translateY(-5px);
+    background: rgba(26, 178, 176, 0.15);
+}
+
+.owner-quote:hover::before {
+    opacity: 1;
+}
+
+.quote-content {
+    position: relative;
+    z-index: 1;
+}
+
+.quote-content p {
+    font-size: 1.4rem;
+    font-style: italic;
+    color: #1ab2b0;
+    margin-bottom: 1rem;
+    line-height: 1.6;
 }
 
 .quote-author {
     font-size: 1.1rem;
-    font-weight: bold;
+    font-weight: 600;
     color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .section-title {
+        font-size: 2.5rem;
+    }
+    
+    .main-text {
+        font-size: 1.3rem;
+    }
+    
+    .quote-content p {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .main-text {
+        font-size: 1.1rem;
+    }
+    
+    .quote-content p {
+        font-size: 1.1rem;
+    }
+    
+    .owner-quote {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .main-text {
+        font-size: 1rem;
+    }
+    
+    .quote-content p {
+        font-size: 1rem;
+    }
+    
+    .owner-quote {
+        padding: 1.2rem;
+    }
 }
