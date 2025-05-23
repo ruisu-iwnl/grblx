@@ -1,92 +1,71 @@
 <!-- Hero Section -->
-<header id="home" class="text-center d-flex align-items-center justify-content-center flex-column min-vh-100 text-white">
-    <div class="container px-4 py-5">
-        <img src="assets/img/G_Logo.png" alt="G-RBLX Logo" class="mb-4 img-fluid">
+<header id="home" class="text-center d-flex align-items-center justify-content-center flex-column min-vh-100 position-relative">
+    <!-- Dynamic Grid Background -->
+    <div class="grid-background"></div>
+    
+    <div class="container px-4 py-5 position-relative">
+        <!-- Logo Section -->
+        <div class="logo-wrapper mb-5">
+            <img src="assets/img/G_Logo.png" alt="G-RBLX Logo" class="logo-image">
+        </div>
         
-        <div class="row text-center g-4 justify-content-center mx-auto" style="max-width: 1000px;"> 
-            <div class="col-12 col-md-4">
-                <div class="card border-0 rounded-4 overflow-hidden bg-dark bg-opacity-75 h-100 transition-all">
-                    <div class="card-body p-4 d-flex flex-column justify-content-center">
-                        <h3 class="fw-bold mb-3 text-white">Company Evaluation</h3>
-                        <p class="display-6 mb-2 text-white">4.8 / 5 ⭐</p>
-                        <p class="text-light opacity-75">Based on 1,200+ reviews</p>
-                    </div>
-                </div>
+        <!-- Stats Section -->
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number" data-value="4.8">4.8</div>
+                <div class="stat-label">Company Rating</div>
+                <div class="stat-detail">Based on 1,200+ reviews</div>
             </div>
-            <div class="col-12 col-md-4">
-                <div class="card border-0 rounded-4 overflow-hidden bg-dark bg-opacity-75 h-100 transition-all">
-                    <div class="card-body p-4 d-flex flex-column justify-content-center">
-                        <h3 class="fw-bold mb-3 text-white">Game Visits</h3>
-                        <p class="display-6 mb-2 text-white">575.7M+</p>
-                        <p class="text-light opacity-75">Across all developed games</p>
-                    </div>
-                </div>
+            <div class="stat-item">
+                <div class="stat-number" data-value="575.7">575.7M+</div>
+                <div class="stat-label">Game Visits</div>
+                <div class="stat-detail">Across all developed games</div>
             </div>
-            <div class="col-12 col-md-4">
-                <div class="card border-0 rounded-4 overflow-hidden bg-dark bg-opacity-75 h-100 transition-all">
-                    <div class="card-body p-4 d-flex flex-column justify-content-center">
-                        <h3 class="fw-bold mb-3 text-white">Community Members</h3>
-                        <p class="display-6 mb-2 text-white">2M+</p>
-                        <p class="text-light opacity-75">Active Discord & Group members</p>
-                    </div>
-                </div>
+            <div class="stat-item">
+                <div class="stat-number" data-value="2">2M+</div>
+                <div class="stat-label">Community Members</div>
+                <div class="stat-detail">Active Discord & Group members</div>
             </div>
         </div>
 
-        <!-- Social Media Cards -->
-        <div class="row text-center g-4 mt-4 justify-content-center mx-auto" style="max-width: 1200px;">
-            <div class="col-6 col-md-3">
-                <a href="https://x.com/GRBLXGAMES" target="_blank" class="text-decoration-none">
-                    <div class="card border-0 rounded-4 overflow-hidden bg-dark bg-opacity-75 h-100 transition-all">
-                        <div class="card-body p-4 d-flex flex-column justify-content-center">
-                            <div class="d-flex align-items-center justify-content-center mb-3">
-                                <img src="assets/icons/twitter.svg" alt="Twitter" width="32" class="me-2">
-                                <h5 class="fw-bold mb-0 text-white">Twitter</h5>
-                            </div>
-                            <p class="text-light opacity-75 mb-0">@GRBLX_Dev</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-6 col-md-3">
-                <a href="https://www.youtube.com/@NpinoyRBLX" target="_blank" class="text-decoration-none">
-                    <div class="card border-0 rounded-4 overflow-hidden bg-dark bg-opacity-75 h-100 transition-all">
-                        <div class="card-body p-4 d-flex flex-column justify-content-center">
-                            <div class="d-flex align-items-center justify-content-center mb-3">
-                                <img src="assets/icons/youtube.svg" alt="YouTube" width="32" class="me-2">
-                                <h5 class="fw-bold mb-0 text-white">YouTube</h5>
-                            </div>
-                            <p class="text-light opacity-75 mb-0">G-RBLX Channel</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-6 col-md-3">
-                <a href="https://discord.gg/grblx" target="_blank" class="text-decoration-none">
-                    <div class="card border-0 rounded-4 overflow-hidden bg-dark bg-opacity-75 h-100 transition-all">
-                        <div class="card-body p-4 d-flex flex-column justify-content-center">
-                            <div class="d-flex align-items-center justify-content-center mb-3">
-                                <img src="assets/icons/discord.svg" alt="Discord" width="32" class="me-2">
-                                <h5 class="fw-bold mb-0 text-white">Discord</h5>
-                            </div>
-                            <p class="text-light opacity-75 mb-0">discord.gg/grblx</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-6 col-md-3">
-                <a href="https://www.roblox.com/communities/3481335/G-RBLX-Games" target="_blank" class="text-decoration-none">
-                    <div class="card border-0 rounded-4 overflow-hidden bg-dark bg-opacity-75 h-100 transition-all">
-                        <div class="card-body p-4 d-flex flex-column justify-content-center">
-                            <div class="d-flex align-items-center justify-content-center mb-3">
-                                <img src="assets/icons/roblox.svg" alt="Roblox" width="32" class="me-2">
-                                <h5 class="fw-bold mb-0 text-white">Roblox</h5>
-                            </div>
-                            <p class="text-light opacity-75 mb-0">GRBLX Group</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
+        <!-- Social Links -->
+        <div class="social-grid">
+            <a href="https://x.com/GRBLXGAMES" target="_blank" class="social-item">
+                <div class="social-icon">
+                    <img src="assets/icons/twitter.svg" alt="Twitter" width="24">
+                </div>
+                <div class="social-info">
+                    <div class="social-name">Twitter</div>
+                    <div class="social-handle">@GRBLX_Dev</div>
+                </div>
+            </a>
+            <a href="https://www.youtube.com/@NpinoyRBLX" target="_blank" class="social-item">
+                <div class="social-icon">
+                    <img src="assets/icons/youtube.svg" alt="YouTube" width="24">
+                </div>
+                <div class="social-info">
+                    <div class="social-name">YouTube</div>
+                    <div class="social-handle">G-RBLX Channel</div>
+                </div>
+            </a>
+            <a href="https://discord.gg/grblx" target="_blank" class="social-item">
+                <div class="social-icon">
+                    <img src="assets/icons/discord.svg" alt="Discord" width="24">
+                </div>
+                <div class="social-info">
+                    <div class="social-name">Discord</div>
+                    <div class="social-handle">discord.gg/grblx</div>
+                </div>
+            </a>
+            <a href="https://www.roblox.com/communities/3481335/G-RBLX-Games" target="_blank" class="social-item">
+                <div class="social-icon">
+                    <img src="assets/icons/roblox.svg" alt="Roblox" width="24">
+                </div>
+                <div class="social-info">
+                    <div class="social-name">Roblox</div>
+                    <div class="social-handle">GRBLX Group</div>
+                </div>
+            </a>
         </div>
     </div>
 </header>
