@@ -23,6 +23,16 @@
 .card { animation-delay: 0.5s; }
 
 /* Base styles for all screens */
+#home {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
+    color: white;
+}
+
 #home .container {
     display: flex;
     flex-direction: column;
@@ -45,6 +55,21 @@
     margin-bottom: 20px;
     width: 100%;
     max-width: 350px;
+    transition: transform 0.3s ease;
+    height: 100%;
+    min-height: 180px;
+}
+
+#home .card:hover {
+    transform: translateY(-10px);
+}
+
+.transition-all {
+    transition: all 0.3s ease;
+}
+
+.card-body {
+    height: 100%;
 }
 
 /* Responsive adjustments */
@@ -76,11 +101,44 @@
     #home .card {
         max-width: 280px;
         margin-bottom: 15px;
+        min-height: 160px;
+        max-width: 400px;
+        margin: 0 auto;
     }
     
     #home .row {
         max-width: 300px;
         margin: 0 auto;
+    }
+
+    #home {
+        padding: 40px 0;
+        min-height: auto;
+        height: auto;
+    }
+    
+    #home img {
+        max-height: 200px;
+    }
+
+    .container {
+        padding: 0 15px;
+    }
+
+    .row {
+        margin: 0;
+    }
+
+    .col-12, .col-6 {
+        padding: 0 10px;
+    }
+
+    .card-body {
+        padding: 20px !important;
+    }
+
+    .display-6 {
+        font-size: 2.5rem;
     }
 }
 
@@ -146,29 +204,6 @@
     }
 }
 
-.stats-card {
-    background: linear-gradient(135deg, 
-        rgba(33, 67, 91, 0.85), 
-        rgba(5, 72, 131, 0.85), 
-        rgba(6, 97, 162, 0.85), 
-        rgba(18, 133, 140, 0.85), 
-        rgba(8, 138, 195, 0.85), 
-        rgba(26, 178, 176, 0.85)
-    ) !important;
-    color: white !important;
-    border: none;
-    border-radius: 12px;
-    backdrop-filter: blur(8px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.stats-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-}
-
 /* Social Media Cards */
 .social-media-cards .twitter-card {
     background-color: #1a8acf;
@@ -219,16 +254,27 @@
     color: rgba(255, 255, 255, 0.9) !important;
 }
 
-.stats-card,
-.social-media-cards .card {
-    padding: 20px !important;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+.stats-card {
+    background: linear-gradient(135deg, 
+        rgba(33, 67, 91, 0.85), 
+        rgba(5, 72, 131, 0.85), 
+        rgba(6, 97, 162, 0.85), 
+        rgba(18, 133, 140, 0.85), 
+        rgba(8, 138, 195, 0.85), 
+        rgba(26, 178, 176, 0.85)
+    ) !important;
+    color: white !important;
+    border: none;
+    border-radius: 12px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.stats-card:hover,
-.social-media-cards .card:hover {
-    transform: scale(1.05) !important;
-    box-shadow: 0 0 15px rgba(8, 138, 195, 0.6) !important;
+.stats-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
 .stats-card .card-title,
