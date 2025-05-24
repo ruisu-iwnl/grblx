@@ -81,7 +81,7 @@
     align-items: center;
     gap: 1.5rem;
     padding: 1.5rem;
-    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+    background: transparent;
     border-radius: 15px;
     max-width: 350px;
     margin: 0 auto;
@@ -117,16 +117,6 @@
     border-radius: 15px;
     overflow: hidden;
     position: relative;
-}
-
-.owner-card .member-image::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, transparent 100%);
 }
 
 .owner-card .member-image img {
@@ -173,7 +163,7 @@
 }
 
 .team-member {
-    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+    background: transparent;
     border-radius: 15px;
     padding: 1.2rem;
     text-align: center;
@@ -211,16 +201,6 @@
     margin: 0 auto 0.8rem;
     position: relative;
     z-index: 2;
-}
-
-.member-image::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, transparent 100%);
 }
 
 .member-image img {

@@ -39,7 +39,6 @@
     animation: floatLeft var(--float-duration) linear infinite;
     border-radius: 20px;
     background: rgba(26, 178, 176, 0.1);
-    backdrop-filter: blur(5px);
 }
 
 .floating-img:hover {
