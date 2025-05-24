@@ -5,6 +5,10 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(response => response.text())
             .then(data => {
                 document.getElementById(placeholder).innerHTML = data;
+                // Set random speeds for floating images after about section loads
+                if (component === 'about') {
+                    setRandomSpeeds();
+                }
             });
     }
 
@@ -18,6 +22,16 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+// Function to set random speeds for floating images
+function setRandomSpeeds() {
+    const images = document.querySelectorAll('.floating-img');
+    images.forEach(img => {
+        // Random duration between 15 and 35 seconds
+        const duration = Math.random() * 20 + 15;
+        img.style.setProperty('--float-duration', `${duration}s`);
+    });
+}
 
 /* for the navbar to be dynamically have active hover */
 document.addEventListener("DOMContentLoaded", function () {
