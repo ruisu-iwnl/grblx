@@ -98,9 +98,9 @@
 .games-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    gap: 1.5rem;
     width: 100%;
-    max-width: 1400px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 1rem;
     position: relative;
@@ -110,10 +110,12 @@
 /* Game Card */
 .game-card {
     position: relative;
-    border-radius: 20px;
+    border-radius: 15px;
     overflow: hidden;
     background: rgba(26, 178, 176, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 450px;
+    margin: 0 auto;
 }
 
 .game-card:hover {
@@ -168,12 +170,12 @@
 
 .play-button {
     display: inline-block;
-    padding: 1rem 2rem;
+    padding: 0.8rem 1.5rem;
     background: #1ab2b0;
     color: white;
     text-decoration: none;
-    border-radius: 30px;
-    font-size: 1.2rem;
+    border-radius: 25px;
+    font-size: 1rem;
     font-weight: 600;
     transform: translateY(20px);
     opacity: 0;
@@ -195,7 +197,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    padding: 2rem;
+    padding: 1.5rem;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
     transform: translateY(100%);
     transition: transform 0.3s ease;
@@ -206,28 +208,28 @@
 }
 
 .game-info h3 {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     font-weight: 700;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
     color: white;
 }
 
 .game-info p {
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: rgba(255, 255, 255, 0.9);
     margin: 0;
-    line-height: 1.5;
+    line-height: 1.4;
 }
 
 /* Responsive Design */
 @media (max-width: 1200px) {
     .games-container {
         grid-template-columns: 1fr;
-        max-width: 800px;
+        max-width: 600px;
     }
     
-    .section-title {
-        font-size: 2.5rem;
+    .game-card {
+        max-width: 400px;
     }
 }
 
@@ -237,30 +239,7 @@
     }
     
     .game-info h3 {
-        font-size: 1.5rem;
-    }
-    
-    .game-info p {
-        font-size: 0.9rem;
-    }
-    
-    .play-button {
-        padding: 0.8rem 1.5rem;
-        font-size: 1rem;
-    }
-}
-
-@media (max-width: 576px) {
-    .section-title {
-        font-size: 1.8rem;
-    }
-    
-    .game-info {
-        padding: 1.5rem;
-    }
-    
-    .game-info h3 {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
     
     .game-info p {
@@ -270,5 +249,36 @@
     .play-button {
         padding: 0.7rem 1.2rem;
         font-size: 0.9rem;
+    }
+    
+    .game-card {
+        max-width: 350px;
+    }
+}
+
+@media (max-width: 576px) {
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .game-info {
+        padding: 1.2rem;
+    }
+    
+    .game-info h3 {
+        font-size: 1.1rem;
+    }
+    
+    .game-info p {
+        font-size: 0.8rem;
+    }
+    
+    .play-button {
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .game-card {
+        max-width: 300px;
     }
 }
