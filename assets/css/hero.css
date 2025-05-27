@@ -65,7 +65,7 @@
 }
 
 .logo-image {
-    max-height: 300px;
+    max-height: 1000px;
     height: auto;
     filter: drop-shadow(0 0 20px rgba(14, 212, 199, 0.6));
     transition: all 0.3s ease;
@@ -238,7 +238,7 @@
     }
     
     .logo-image {
-        max-height: 250px;
+        max-height: 350px;
     }
 }
 
@@ -254,7 +254,7 @@
     }
     
     .logo-image {
-        max-height: 200px;
+        max-height: 300px;
     }
     
     .stat-number {
@@ -264,7 +264,7 @@
 
 @media (max-width: 576px) {
     .logo-image {
-        max-height: 150px;
+        max-height: 250px;
     }
     
     .stat-number {
@@ -535,4 +535,22 @@
 .social-media-cards .card-text {
     font-size: 1.5rem !important; 
 }
+
+/* Fullscreen GIF Section */
+/* .fullscreen-gif {
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    background-color: transparent;
+    margin-top: -80px; 
+    padding-top: 80px; 
+} */
+
+
+/* .fullscreen-gif-image {
+    width: 100%;
+    height: auto;
+    display: block;
+} */
 
