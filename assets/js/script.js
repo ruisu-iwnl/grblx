@@ -125,3 +125,24 @@ document.addEventListener("DOMContentLoaded", function () {
 //         });
 //     }
 // });
+
+// Hide loading screen when page loads
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        const loading = document.getElementById('loading');
+        loading.classList.add('fade-out');
+        setTimeout(() => {
+            loading.style.display = 'none';
+        }, 500); // Wait for fade-out animation to complete
+    }, 2000); // Show for 2 seconds
+});
+
+console.log(
+    '%cSTOP!', 
+    'font-size: 50px; font-weight: bold; color: red;'
+);
+console.log(
+    '%cThis is a browser feature intended for developers. If someone told you to copy-paste something here to enable a Roblox feature or "hack" someone\'s account, it is a scam and will give them access to your Roblox account.',
+    'font-size: 20px; color: #333;'
+);
+
