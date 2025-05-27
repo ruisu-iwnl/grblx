@@ -1,5 +1,34 @@
 /* component handling for the index page */
 document.addEventListener("DOMContentLoaded", () => {
+    // Cookie consent functionality
+    const cookieConsent = document.getElementById('cookie-consent');
+    const acceptCookies = document.getElementById('accept-cookies');
+    const declineCookies = document.getElementById('decline-cookies');
+
+    // Function to clear cookie consent state (for debugging)
+    window.clearCookieConsent = function() {
+        localStorage.removeItem('cookieConsent');
+        cookieConsent.style.display = 'block';
+        console.log('Cookie consent state cleared. Banner is now visible.');
+    };
+
+    // Check if user has already made a choice
+    if (!localStorage.getItem('cookieConsent')) {
+        cookieConsent.style.display = 'block';
+    }
+
+    // Handle accept button
+    acceptCookies.addEventListener('click', () => {
+        localStorage.setItem('cookieConsent', 'accepted');
+        cookieConsent.style.display = 'none';
+    });
+
+    // Handle decline button
+    declineCookies.addEventListener('click', () => {
+        localStorage.setItem('cookieConsent', 'declined');
+        cookieConsent.style.display = 'none';
+    });
+
     function loadComponent(component, placeholder) {
         fetch(`components/${component}.html`)
             .then(response => response.text())
