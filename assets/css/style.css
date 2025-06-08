@@ -6,6 +6,10 @@ html {
     overflow-x: hidden;
 }
 
+body, p, span, div {
+    cursor: default;
+  }
+
 @media (max-width: 1200px) {
     html {
         font-size: 90%;

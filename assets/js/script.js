@@ -155,19 +155,28 @@ document.addEventListener("DOMContentLoaded", function () {
 //     }
 // });
 
-// Hide loading screen when page loads
+
+
+//debugging purposes, this is for the loading screen
+const disableLoadingScreen = true;
+
 window.addEventListener('load', () => {
+    if (disableLoadingScreen) {
+        const loading = document.getElementById('loading');
+        if (loading) loading.style.display = 'none';
+        return;
+    }
     setTimeout(() => {
         const loading = document.getElementById('loading');
         loading.classList.add('fade-out');
         setTimeout(() => {
             loading.style.display = 'none';
-        }, 500); // Wait for fade-out animation to complete
-    }, 2000); // Show for 2 seconds
+        }, 500); // wait for tha animation to complete
+    }, 2000); // show for 2 seconds
 });
 
 console.log(
-    '%cSTOP!', 
+    '%cSTOP RIGHT THERE!', 
     'font-size: 50px; font-weight: bold; color: red;'
 );
 console.log(
@@ -175,3 +184,12 @@ console.log(
     'font-size: 20px; color: #333;'
 );
 
+// Disable drag
+document.addEventListener('dragstart', function(e) {
+    e.preventDefault();
+  });
+  
+// Disable text selection
+document.addEventListener('selectstart', function(e) {
+    e.preventDefault();
+});
