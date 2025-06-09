@@ -292,3 +292,24 @@ section + section {
         padding: 1rem 0;
     }
 }
+
+.stat-item {
+    position: relative;
+}
+.exact-visits {
+    display: none;
+    position: absolute;
+    top: -2em;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #222;
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.95em;
+    z-index: 9999;
+    pointer-events: none;
+}
+.stat-item:hover .exact-visits {
+    display: block;
+}

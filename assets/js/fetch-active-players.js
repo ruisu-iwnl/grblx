@@ -1,3 +1,5 @@
+let lastExact = null;
+
 function fetchAndDisplayActivePlayersAndVisits() {
     const robloxUrl = "https://games.roblox.com/v1/games?universeIds=1147304238,5768456460,5117861193";
     const url = "https://corsproxy.io/?" + encodeURIComponent(robloxUrl);
@@ -10,7 +12,7 @@ function fetchAndDisplayActivePlayersAndVisits() {
                 const elem = document.getElementById('active-players');
                 if (elem) elem.textContent = totalActive.toLocaleString();
 
-                //sum of visits from all games
+                // sum of visits from all games
                 const totalVisits = data.data.reduce((sum, game) => sum + (game.visits || 0), 0);
                 const visitsElem = document.getElementById('total-visits');
                 if (visitsElem) {
@@ -26,6 +28,10 @@ function fetchAndDisplayActivePlayersAndVisits() {
                     }
                     visitsElem.textContent = display;
                 }
+                // update tooltip value
+                lastExact = totalVisits;
+                const exactElem = document.querySelector('.js-exact-visits');
+                if (exactElem) exactElem.textContent = totalVisits.toLocaleString() + " visits";
             }
         })
         .catch(err => {
@@ -35,12 +41,22 @@ function fetchAndDisplayActivePlayersAndVisits() {
             const visitsElem = document.getElementById('total-visits');
             if(visitsElem) visitsElem.textContent = "N/A";
 
+            const exactElem = document.querySelector('.js-exact-visits');
+            if (exactElem) exactElem.textContent = "N/A";
+
             console.error("failed to fetch active players:", err);
         });
 }
 
-// call this after the hero component is loaded
 document.addEventListener("DOMContentLoaded", () => {
     fetchAndDisplayActivePlayersAndVisits();
     setInterval(fetchAndDisplayActivePlayersAndVisits, 2000); // refresh every 2 seconds
+
+    // fetch immediately on hover for real-time tooltip
+    const gameVisitsCard = document.querySelector('.stat-item .js-exact-visits')?.parentElement;
+    if (gameVisitsCard) {
+        gameVisitsCard.addEventListener('mouseenter', () => {
+            fetchAndDisplayActivePlayersAndVisits();
+        });
+    }
 });

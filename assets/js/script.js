@@ -183,6 +183,7 @@ console.log(
     '%cThis is a browser feature intended for developers. If someone told you to copy-paste something here to enable a Roblox feature or "hack" someone\'s account, it is a scam and will give them access to your Roblox account.',
     'font-size: 20px; color: #333;'
 );
+console.log("%ckindly close this tab.", "color: #0af; font-size: 18px; font-family: monospace;");
 
 // Disable drag
 document.addEventListener('dragstart', function(e) {
