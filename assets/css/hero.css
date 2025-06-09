@@ -157,9 +157,9 @@
 /* Social Grid */
 .social-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-    max-width: 1000px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
     margin: 4rem auto 0;
     padding: 0 2rem;
 }
@@ -250,7 +250,7 @@
     
     .social-grid {
         grid-template-columns: 1fr;
-        max-width: 300px;
+        max-width: 1400px;
     }
     
     .logo-image {
