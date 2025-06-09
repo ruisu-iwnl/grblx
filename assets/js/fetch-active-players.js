@@ -42,5 +42,5 @@ function fetchAndDisplayActivePlayersAndVisits() {
 // call this after the hero component is loaded
 document.addEventListener("DOMContentLoaded", () => {
     fetchAndDisplayActivePlayersAndVisits();
-    setInterval(fetchAndDisplayActivePlayersAndVisits, 60000); // refresh every 60 seconds
+    setInterval(fetchAndDisplayActivePlayersAndVisits, 2000); // refresh every 2 seconds
 });
