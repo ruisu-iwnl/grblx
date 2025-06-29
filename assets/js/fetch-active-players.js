@@ -50,7 +50,7 @@ function fetchAndDisplayActivePlayersAndVisits() {
 
 document.addEventListener("DOMContentLoaded", () => {
     fetchAndDisplayActivePlayersAndVisits();
-    setInterval(fetchAndDisplayActivePlayersAndVisits, 2000); // refresh every 2 seconds
+    setInterval(fetchAndDisplayActivePlayersAndVisits, 30000); // refresh every 30 seconds
 
     // fetch immediately on hover for real-time tooltip
     const gameVisitsCard = document.querySelector('.stat-item .js-exact-visits')?.parentElement;
