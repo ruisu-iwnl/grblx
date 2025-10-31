@@ -41,11 +41,61 @@ document.addEventListener("DOMContentLoaded", () => {
         .finally(() => {
             document.body.classList.remove('pre-init');
             try {
-                const images = document.querySelectorAll('img:not(#bg-fallback):not(#bg-video):not(#loading img)');
+                const images = document.querySelectorAll('img:not(#bg-fallback):not(#bg-video):not(#loading img):not(.logo-image)');
                 images.forEach(img => {
                     if (!img.hasAttribute('loading')) img.setAttribute('loading', 'lazy');
                     if (!img.hasAttribute('decoding')) img.setAttribute('decoding', 'async');
                 });
+            } catch (e) {}
+
+            try {
+                const logo = document.querySelector('.logo-image');
+                if (logo) {
+                    let clickCount = 0;
+                    logo.addEventListener('click', () => {
+                        clickCount += 1;
+                        logo.classList.add('hover-play');
+                        setTimeout(() => logo.classList.remove('hover-play'), 300);
+
+                        if (clickCount >= 5) {
+                            try {
+                                const sfx = new Audio('assets/effect.mp3');
+                                sfx.volume = 1.0;
+
+                                let overlay = document.getElementById('effect-overlay');
+                                if (!overlay) {
+                                    overlay = document.createElement('div');
+                                    overlay.id = 'effect-overlay';
+                                    overlay.setAttribute('aria-hidden', 'true');
+                                    const img = document.createElement('img');
+                                    img.src = 'assets/img/effect.gif';
+                                    img.alt = '';
+                                    overlay.appendChild(img);
+                                    document.body.appendChild(overlay);
+                                }
+                                overlay.classList.remove('fade-out');
+                                overlay.style.display = '';
+                                const showDelayMs = 160;
+                                setTimeout(() => {
+                                    overlay.classList.add('show');
+                                }, showDelayMs);
+
+                                const hideOverlay = () => {
+                                    overlay.classList.add('fade-out');
+                                    setTimeout(() => {
+                                        overlay.classList.remove('show');
+                                        overlay.classList.remove('fade-out');
+                                        overlay.style.display = 'none';
+                                    }, 320);
+                                };
+
+                                sfx.addEventListener('ended', hideOverlay, { once: true });
+                                sfx.play().catch(() => hideOverlay());
+                            } catch (e) {}
+                            clickCount = 0;
+                        }
+                    });
+                }
             } catch (e) {}
         });
 

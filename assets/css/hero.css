@@ -17,6 +17,26 @@
     opacity: 0; 
 }
 
+@media (prefers-reduced-motion: reduce) {
+    #home img,
+    #home h1,
+    #home p,
+    .card {
+        animation: none !important;
+        opacity: 1 !important;
+    }
+}
+
+body.low-mem #home img,
+body.low-mem #home h1,
+body.low-mem #home p,
+body.low-mem .card {
+    animation: none !important;
+    opacity: 1 !important;
+}
+
+
+
 #home img { animation-delay: 0.2s; }
 #home h1 { animation-delay: 0.3s; }
 #home p { animation-delay: 0.4s; }
@@ -65,13 +85,15 @@ body.low-mem .grid-background {
 .logo-wrapper {
     position: relative;
     margin-bottom: 3rem;
+    display: inline-block;
+    transition: transform 0.3s ease;
 }
 
 .logo-image {
     max-height: 1000px;
     height: auto;
     filter: drop-shadow(0 0 20px rgba(14, 212, 199, 0.6));
-    transition: all 0.3s ease;
+    transition: filter 0.3s ease;
     animation: float 6s ease-in-out infinite;
 }
 body.low-mem .logo-image {
@@ -80,8 +102,16 @@ body.low-mem .logo-image {
 
 .logo-image:hover {
     filter: drop-shadow(0 0 30px rgba(14, 212, 199, 0.8));
+}
+
+.logo-wrapper:hover {
     transform: scale(1.05);
 }
+
+.logo-image.hover-play {
+    filter: drop-shadow(0 0 30px rgba(14, 212, 199, 0.8));
+}
+
 
 @keyframes float {
     0%, 100% {
