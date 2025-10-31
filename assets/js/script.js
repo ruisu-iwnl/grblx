@@ -30,11 +30,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     function loadComponent(component, placeholder) {
-        fetch(`components/${component}.html`)
+        return fetch(`components/${component}.html`)
             .then(response => response.text())
             .then(data => {
                 document.getElementById(placeholder).innerHTML = data;
-                // Set random speeds for floating images after about section loads
                 if (component === 'about') {
                     setRandomSpeeds();
                 }
@@ -42,13 +41,64 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const components = ["navbar", "hero", "about", "games", "team"];
-    components.forEach(component => loadComponent(component, `${component}-placeholder`));
+    Promise.all(components.map(component => loadComponent(component, `${component}-placeholder`)))
+        .finally(() => {
+            document.body.classList.remove('pre-init');
+        });
 
     document.addEventListener("click", (e) => {
         if (e.target.matches(".nav-link[href='#home']")) {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: "smooth" });
         }
+    });
+});
+
+// Background video fallback handling
+document.addEventListener('DOMContentLoaded', () => {
+    const forceGifBackground = true; // set to false to re-enable video
+    const video = document.getElementById('bg-video');
+    const fallbackImg = document.getElementById('bg-fallback');
+    if (!video || !fallbackImg) return;
+
+    let hasPlayedFrame = false;
+    let fellBack = false;
+
+    function useFallback() {
+        if (fellBack) return;
+        fellBack = true;
+        try { video.pause(); } catch (e) {}
+        video.style.display = 'none';
+        fallbackImg.hidden = false;
+    }
+
+    if (forceGifBackground) {
+        useFallback();
+        return;
+    }
+
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        useFallback();
+        return;
+    }
+    if (navigator.connection && navigator.connection.saveData) {
+        useFallback();
+        return;
+    }
+
+    const startTimeout = setTimeout(() => {
+        if (!hasPlayedFrame) {
+            useFallback();
+        }
+    }, 2000);
+
+    const onPlaying = () => { hasPlayedFrame = true; clearTimeout(startTimeout); };
+    video.addEventListener('playing', onPlaying, { once: true });
+
+    ['error', 'stalled', 'suspend', 'abort', 'emptied', 'waiting'].forEach(evt => {
+        video.addEventListener(evt, () => {
+            if (!hasPlayedFrame) useFallback();
+        });
     });
 });
 
@@ -158,21 +208,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 //debugging purposes, this is for the loading screen
-const disableLoadingScreen = true;
+const disableLoadingScreen = false;
+
+const loaderStartTimeMs = performance.now();
 
 window.addEventListener('load', () => {
+    const loading = document.getElementById('loading');
+    if (!loading) return;
+
     if (disableLoadingScreen) {
-        const loading = document.getElementById('loading');
-        if (loading) loading.style.display = 'none';
+        loading.style.display = 'none';
         return;
     }
+
+    const loaderImage = loading.querySelector('img');
+    const minDurationMs = Number(loaderImage?.dataset?.duration) || 2500; 
+    const elapsedMs = performance.now() - loaderStartTimeMs;
+    const remainingMs = Math.max(0, minDurationMs - elapsedMs);
+
     setTimeout(() => {
-        const loading = document.getElementById('loading');
         loading.classList.add('fade-out');
         setTimeout(() => {
             loading.style.display = 'none';
-        }, 500); // wait for tha animation to complete
-    }, 2000); // show for 2 seconds
+        }, 500); // wait for the fade animation to complete
+    }, remainingMs);
 });
 
 console.log(

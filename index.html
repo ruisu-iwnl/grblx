@@ -54,16 +54,17 @@
         <link rel="stylesheet" href="assets/css/cookie-consent.css">
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     </head>
-    <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="100" style="padding-top: 80px;">
+    <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="100" style="padding-top: 80px;" class="pre-init">
         <div id="loading">
-            <img src="assets/img/G.gif" alt="Loading...">
+            <img src="assets/img/G.gif" alt="Loading..." data-duration="1500">
         </div>
 
         <div id="video-overlay">
             <video autoplay loop muted playsinline id="bg-video">
-                <source src="assets/mp4/sitebg.mp4" type="video/mp4">
+                <source src="assets/mp4/Sitebg2-1.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
+            <img id="bg-fallback" src="assets/img/sitebg-compressed.gif" alt="Background" hidden>
         </div>
                 
         <!-- SECTIONS -->
