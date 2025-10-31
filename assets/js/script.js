@@ -5,25 +5,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const acceptCookies = document.getElementById('accept-cookies');
     const declineCookies = document.getElementById('decline-cookies');
 
-    // Function to clear cookie consent state (for debugging)
     window.clearCookieConsent = function() {
         localStorage.removeItem('cookieConsent');
         cookieConsent.style.display = 'block';
         console.log('Cookie consent state cleared. Banner is now visible.');
     };
 
-    // Check if user has already made a choice
     if (!localStorage.getItem('cookieConsent')) {
         cookieConsent.style.display = 'block';
     }
 
-    // Handle accept button
     acceptCookies.addEventListener('click', () => {
         localStorage.setItem('cookieConsent', 'accepted');
         cookieConsent.style.display = 'none';
     });
 
-    // Handle decline button
     declineCookies.addEventListener('click', () => {
         localStorage.setItem('cookieConsent', 'declined');
         cookieConsent.style.display = 'none';
@@ -44,6 +40,13 @@ document.addEventListener("DOMContentLoaded", () => {
     Promise.all(components.map(component => loadComponent(component, `${component}-placeholder`)))
         .finally(() => {
             document.body.classList.remove('pre-init');
+            try {
+                const images = document.querySelectorAll('img:not(#bg-fallback):not(#bg-video):not(#loading img)');
+                images.forEach(img => {
+                    if (!img.hasAttribute('loading')) img.setAttribute('loading', 'lazy');
+                    if (!img.hasAttribute('decoding')) img.setAttribute('decoding', 'async');
+                });
+            } catch (e) {}
         });
 
     document.addEventListener("click", (e) => {
@@ -56,7 +59,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Background video fallback handling
 document.addEventListener('DOMContentLoaded', () => {
-    const forceGifBackground = true; // set to false to re-enable video
+    const forceGifBackground = false; // set true to force GIF
+    const forceVideoBackground = true; // set true to force VIDEO
     const video = document.getElementById('bg-video');
     const fallbackImg = document.getElementById('bg-fallback');
     if (!video || !fallbackImg) return;
@@ -68,12 +72,28 @@ document.addEventListener('DOMContentLoaded', () => {
         if (fellBack) return;
         fellBack = true;
         try { video.pause(); } catch (e) {}
+
+        try {
+            const sources = Array.from(video.querySelectorAll('source'));
+            sources.forEach(s => s.remove());
+            video.removeAttribute('src');
+            video.load();
+        } catch (e) {}
         video.style.display = 'none';
         fallbackImg.hidden = false;
     }
 
     if (forceGifBackground) {
         useFallback();
+        return;
+    }
+
+    if (forceVideoBackground) {
+
+        fallbackImg.hidden = true;
+        video.style.display = '';
+        try { video.play().catch(() => {}); } catch (e) {}
+
         return;
     }
 
@@ -102,7 +122,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Function to set random speeds for floating images
+document.addEventListener('DOMContentLoaded', () => {
+    try {
+        const mem = navigator.deviceMemory; // e.g., 0.5, 1, 2, 4, 8
+        if (mem && mem < 4) {
+            document.body.classList.add('low-mem');
+        }
+    } catch (e) {}
+});
+
 function setRandomSpeeds() {
     const images = document.querySelectorAll('.floating-img');
     images.forEach(img => {

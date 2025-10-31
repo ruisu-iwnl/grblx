@@ -48,6 +48,9 @@
     transform-origin: top;
     animation: gridMove 20s linear infinite;
 }
+body.low-mem .grid-background {
+    animation: none !important;
+}
 
 @keyframes gridMove {
     0% {
@@ -70,6 +73,9 @@
     filter: drop-shadow(0 0 20px rgba(14, 212, 199, 0.6));
     transition: all 0.3s ease;
     animation: float 6s ease-in-out infinite;
+}
+body.low-mem .logo-image {
+    animation: none !important;
 }
 
 .logo-image:hover {

@@ -104,6 +104,16 @@ section + section {
     z-index: -2;
 }
 
+/* Low-memory overrides */
+body.low-mem #video-overlay {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(0, 0, 0, 0.25) !important;
+}
+body.low-mem #bg-video {
+    filter: none !important;
+}
+
 #bg-video::after {
     content: "";
     position: fixed;
