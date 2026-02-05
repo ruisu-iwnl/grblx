@@ -1,0 +1,42 @@
+name: Update Roblox Stats
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: roblox-stats
+  cancel-in-progress: true
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Fetch Roblox stats
+        run: node .github/scripts/fetch-roblox-stats.mjs
+
+      - name: Commit stats.json
+        run: |
+          git add stats.json
+          if git diff --cached --quiet; then
+            echo "No changes to stats.json"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: update stats.json"
+          git push
