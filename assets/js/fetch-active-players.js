@@ -1,103 +1,51 @@
-const STATS_URL = "stats.json";
-const FETCH_TIMEOUT_MS = 6000;
-const CACHE_TTL_MS = 30000;
-const HOVER_REFRESH_MIN_MS = 8000;
+let lastExact = null;
 
-let cachedData = null;
-let cachedAtMs = 0;
-let inFlight = null;
-let lastHoverRequestAtMs = 0;
+function fetchAndDisplayActivePlayersAndVisits() {
+    const robloxUrl = "https://games.roblox.com/v1/games?universeIds=1147304238,5768456460,5117861193";
+    const url = "https://corsproxy.io/?" + encodeURIComponent(robloxUrl);
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            if (data && data.data) {
+                // sum the 'playing' values from all games
+                const totalActive = data.data.reduce((sum, game) => sum + (game.playing || 0), 0);
+                const elem = document.getElementById('active-players');
+                if (elem) elem.textContent = totalActive.toLocaleString();
 
-function fetchJsonWithTimeout(url, options = {}) {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
-
-    return fetch(url, { ...options, signal: controller.signal })
-        .then((response) => {
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
-            return response.json();
+                // sum of visits from all games
+                const totalVisits = data.data.reduce((sum, game) => sum + (game.visits || 0), 0);
+                const visitsElem = document.getElementById('total-visits');
+                if (visitsElem) {
+                    let display = "";
+                    if (totalVisits >= 1_000_000_000) {
+                        display = totalVisits.toString().slice(0, 3) + "B+";
+                    } else if (totalVisits >= 1_000_000) {
+                        display = totalVisits.toString().slice(0, 3) + "M+";
+                    } else if (totalVisits >= 1_000) {
+                        display = totalVisits.toString().slice(0, 3) + "K+";
+                    } else {
+                        display = totalVisits.toString();
+                    }
+                    visitsElem.textContent = display;
+                }
+                // update tooltip value
+                lastExact = totalVisits;
+                const exactElem = document.querySelector('.js-exact-visits');
+                if (exactElem) exactElem.textContent = totalVisits.toLocaleString() + " visits";
+            }
         })
-        .finally(() => clearTimeout(timeoutId));
-}
+        .catch(err => {
+            const elem = document.getElementById('active-players');
+            if (elem) elem.textContent = "N/A";
 
-function normalizeAndDisplayStats(data) {
-    if (!data) return;
-    const totalActive = Number(data.totalActive ?? 0);
-    const activeElem = document.getElementById('active-players');
-    if (activeElem) activeElem.textContent = totalActive.toLocaleString();
+            const visitsElem = document.getElementById('total-visits');
+            if(visitsElem) visitsElem.textContent = "N/A";
 
-    const totalVisits = Number(data.totalVisits ?? 0);
-    const visitsElem = document.getElementById('total-visits');
-    if (visitsElem) {
-        let display = "";
-        if (totalVisits >= 1_000_000_000) {
-            display = totalVisits.toString().slice(0, 3) + "B+";
-        } else if (totalVisits >= 1_000_000) {
-            display = totalVisits.toString().slice(0, 3) + "M+";
-        } else if (totalVisits >= 1_000) {
-            display = totalVisits.toString().slice(0, 3) + "K+";
-        } else {
-            display = totalVisits.toString();
-        }
-        visitsElem.textContent = display;
-    }
+            const exactElem = document.querySelector('.js-exact-visits');
+            if (exactElem) exactElem.textContent = "N/A";
 
-    const exactElem = document.querySelector('.js-exact-visits');
-    if (exactElem) exactElem.textContent = `${totalVisits.toLocaleString()} visits`;
-}
-
-function setStatsToNA() {
-    const activeElem = document.getElementById('active-players');
-    if (activeElem) activeElem.textContent = "N/A";
-
-    const visitsElem = document.getElementById('total-visits');
-    if (visitsElem) visitsElem.textContent = "N/A";
-
-    const exactElem = document.querySelector('.js-exact-visits');
-    if (exactElem) exactElem.textContent = "N/A";
-}
-
-async function fetchRobloxData() {
-    const nowMs = Date.now();
-    if (cachedData && nowMs - cachedAtMs < CACHE_TTL_MS) {
-        return cachedData;
-    }
-
-    if (inFlight) return inFlight;
-
-    inFlight = (async () => {
-        try {
-            const stats = await fetchJsonWithTimeout(STATS_URL, { cache: "no-store" });
-            if (!stats) throw new Error("Invalid stats response");
-            cachedData = stats;
-            cachedAtMs = Date.now();
-            return stats;
-        } finally {
-            inFlight = null;
-        }
-    })();
-
-    return inFlight;
-}
-
-async function fetchAndDisplayActivePlayersAndVisits() {
-    try {
-        const data = await fetchRobloxData();
-        if (data && data.data) {
-            normalizeAndDisplayStats(data);
-        } else if (cachedData) {
-            normalizeAndDisplayStats(cachedData);
-        } else {
-            setStatsToNA();
-        }
-    } catch (err) {
-        if (cachedData) {
-            normalizeAndDisplayStats(cachedData);
-        } else {
-            setStatsToNA();
-        }
-        console.error("failed to fetch active players:", err);
-    }
+            console.error("failed to fetch active players:", err);
+        });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -108,12 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const gameVisitsCard = document.querySelector('.stat-item .js-exact-visits')?.parentElement;
     if (gameVisitsCard) {
         gameVisitsCard.addEventListener('mouseenter', () => {
-            const nowMs = Date.now();
-            if (nowMs - lastHoverRequestAtMs < HOVER_REFRESH_MIN_MS) {
-                if (cachedData) normalizeAndDisplayStats(cachedData);
-                return;
-            }
-            lastHoverRequestAtMs = nowMs;
             fetchAndDisplayActivePlayersAndVisits();
         });
     }
