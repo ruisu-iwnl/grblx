@@ -1,25 +1,25 @@
 {
-  "updatedAt": "2026-02-05T06:31:47.763Z",
-  "totalActive": 566,
-  "totalVisits": 613678748,
+  "updatedAt": "2026-02-05T07:36:02.582Z",
+  "totalActive": 543,
+  "totalVisits": 613680178,
   "games": [
     {
       "id": 1147304238,
       "name": "🔥 Dragon Blox ",
-      "playing": 525,
-      "visits": 599850509
+      "playing": 499,
+      "visits": 599851645
     },
     {
       "id": 5768456460,
       "name": "Super Saiyan Simulator 2",
-      "playing": 40,
-      "visits": 13619685
+      "playing": 42,
+      "visits": 13619957
     },
     {
       "id": 5117861193,
       "name": "(DEMO) Zenkai Warriors 🐉",
-      "playing": 1,
-      "visits": 208554
+      "playing": 2,
+      "visits": 208576
     }
   ]
 }
