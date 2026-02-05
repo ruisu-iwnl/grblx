@@ -1,6 +1,11 @@
 const ROBLOX_UNIVERSE_IDS = "1147304238,5768456460,5117861193";
 const ROBLOX_URL = `https://games.roblox.com/v1/games?universeIds=${ROBLOX_UNIVERSE_IDS}`;
-const ROBLOX_PROXY_URL = `https://corsproxy.io/?${encodeURIComponent(ROBLOX_URL)}`;
+const ROBLOX_PROXY_URLS = [
+    `https://cors.isomorphic-git.org/${ROBLOX_URL}`,
+    `https://api.allorigins.win/raw?url=${encodeURIComponent(ROBLOX_URL)}`,
+    `https://thingproxy.freeboard.io/fetch/${ROBLOX_URL}`,
+    `https://corsproxy.io/?${encodeURIComponent(ROBLOX_URL)}`
+];
 const FETCH_TIMEOUT_MS = 6000;
 const CACHE_TTL_MS = 30000;
 const HOVER_REFRESH_MIN_MS = 8000;
@@ -79,12 +84,20 @@ async function fetchRobloxData() {
             cachedAtMs = Date.now();
             return direct;
         } catch (directErr) {
-            // Fallback to proxy (slower, but usually works)
-            const proxied = await fetchJsonWithTimeout(ROBLOX_PROXY_URL);
-            if (!proxied || !proxied.data) throw new Error("Invalid proxy response");
-            cachedData = proxied;
-            cachedAtMs = Date.now();
-            return proxied;
+            // Fallback to proxies (try in order)
+            let lastErr = directErr;
+            for (const proxyUrl of ROBLOX_PROXY_URLS) {
+                try {
+                    const proxied = await fetchJsonWithTimeout(proxyUrl);
+                    if (!proxied || !proxied.data) throw new Error("Invalid proxy response");
+                    cachedData = proxied;
+                    cachedAtMs = Date.now();
+                    return proxied;
+                } catch (proxyErr) {
+                    lastErr = proxyErr;
+                }
+            }
+            throw lastErr;
         } finally {
             inFlight = null;
         }
