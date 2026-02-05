@@ -286,7 +286,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 //debugging purposes, this is for the loading screen
-const disableLoadingScreen = false;
+const disableLoadingScreen = true;
+
+if (disableLoadingScreen) {
+    const loading = document.getElementById('loading');
+    if (loading) {
+        loading.style.display = 'none';
+        loading.setAttribute('aria-hidden', 'true');
+    }
+}
 
 const loaderStartTimeMs = performance.now();
 
