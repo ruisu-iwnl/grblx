@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Bump ?v= below when you deploy changed assets; then no CloudFront invalidation needed (see DEPLOY_CHECKLIST.md). -->
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -43,18 +44,19 @@
         <link rel="apple-touch-icon" href="assets/img/G_Logo.png">
         <link rel="canonical" href="https://grblx.com/">
 
-        <link rel="stylesheet" href="assets/css/style.css">
-        <link rel="stylesheet" href="assets/css/fonts.css"> 
-        <link rel="stylesheet" href="assets/css/hero.css"> 
-        <link rel="stylesheet" href="assets/css/about.css">
-        <link rel="stylesheet" href="assets/css/games.css"> 
-        <link rel="stylesheet" href="assets/css/team.css">         
-        <link rel="stylesheet" href="assets/css/responsive.css">
-        <link rel="stylesheet" href="assets/css/loading.css">
-        <link rel="stylesheet" href="assets/css/cookie-consent.css">
-        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/css/style.css?v=2">
+        <link rel="stylesheet" href="assets/css/fonts.css?v=2"> 
+        <link rel="stylesheet" href="assets/css/hero.css?v=2"> 
+        <link rel="stylesheet" href="assets/css/about.css?v=2">
+        <link rel="stylesheet" href="assets/css/games.css?v=2"> 
+        <link rel="stylesheet" href="assets/css/team.css?v=2">         
+        <link rel="stylesheet" href="assets/css/responsive.css?v=2">
+        <link rel="stylesheet" href="assets/css/loading.css?v=2">
+        <link rel="stylesheet" href="assets/css/cookie-consent.css?v=2">
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css?v=2">
     </head>
     <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="100" style="padding-top: 80px;" class="pre-init">
+        <script>window.GRBLX_ACTIVE_PLAYERS_API = "https://dftgcctvvt3omx6kdirhjnokfe0wxolc.lambda-url.ap-northeast-1.on.aws/";</script>
         <div id="loading">
             <img src="assets/img/G.gif" alt="Loading..." data-duration="1500">
         </div>
@@ -89,10 +91,10 @@
             </div>
         </div>
 
-        <script src="assets/js/script.js"></script>
-        <script src="assets/js/disable-right-click.js"></script>
-        <script src="assets/js/fetch-active-players.js"></script>
+        <script src="assets/js/script.js?v=2"></script>
+        <script src="assets/js/disable-right-click.js?v=2"></script>
+        <script src="assets/js/fetch-active-players.js?v=2"></script>
     </body>
     
-    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.bundle.min.js?v=2"></script>
 </html>

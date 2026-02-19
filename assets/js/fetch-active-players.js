@@ -1,12 +1,19 @@
 let lastExact = null;
 
+const ACTIVE_PLAYERS_API = window.GRBLX_ACTIVE_PLAYERS_API || "/api/active-players";
+
+function fetchGamesData() {
+    return fetch(ACTIVE_PLAYERS_API)
+        .then((response) => {
+            if (!response.ok) throw new Error(response.status + " " + response.statusText);
+            return response.json();
+        });
+}
+
 function fetchAndDisplayActivePlayersAndVisits() {
-    const robloxUrl = "https://games.roblox.com/v1/games?universeIds=1147304238,5768456460,5117861193";
-    const url = "https://corsproxy.io/?" + encodeURIComponent(robloxUrl);
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            if (data && data.data) {
+    fetchGamesData()
+        .then((data) => {
+            if (!data || !data.data) return;
                 // sum the 'playing' values from all games
                 const totalActive = data.data.reduce((sum, game) => sum + (game.playing || 0), 0);
                 const elem = document.getElementById('active-players');
@@ -32,7 +39,6 @@ function fetchAndDisplayActivePlayersAndVisits() {
                 lastExact = totalVisits;
                 const exactElem = document.querySelector('.js-exact-visits');
                 if (exactElem) exactElem.textContent = totalVisits.toLocaleString() + " visits";
-            }
         })
         .catch(err => {
             const elem = document.getElementById('active-players');
